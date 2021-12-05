@@ -1,4 +1,12 @@
-
+/**
+ * jquery.doDrag.js
+ * https://github.com/bbjavascript/jquery.doDrag.js
+ * 
+ * Released under the MIT license
+ * https://github.com/bbjavascript/jquery.doDrag.js/blob/main/LICENSE
+ * 
+ * lastUpdate: 2021-12-05T11:10:57.449Z
+ */
 (function($) {
     var Drag = (function() {
         function Drag(ele, options) {
