@@ -5,7 +5,7 @@
  * Released under the MIT license
  * https://github.com/bbjavascript/jquery.doDrag.js/blob/main/LICENSE
  * 
- * lastUpdate: 2021-12-05T11:10:57.449Z
+ * lastUpdate: '2021-12-05T13:48:09.978Z'
  */
 (function($) {
     var Drag = (function() {
@@ -23,8 +23,15 @@
                     tH = dc.outerHeight(),
                     oW = me.outerWidth(),
                     oH = me.outerHeight(),
+                    el = this.settings.dragSelector || "",
+                    closeSelector = this.settings.closeSelector,
                     zidx = me.css('z-index'), maxIdx = 9e7;
-                me.off().on("mousedown", function(e) {
+                    el?$(el).css('cursor', 'move'):me.css('cursor', 'move');
+                    if(closeSelector) {
+                        me.find(closeSelector).css('cursor', 'point');
+                    }
+                me.off().on("mousedown", el, function(e) {
+                    e.stopPropagation();
                     var offX = e.offsetX, offY = e.offsetY;
                     dc.off("mousemove.dragmove").on("mousemove.dragmove", function(e) {
                         var eX = e.pageX - offX,
@@ -51,7 +58,13 @@
                 }).on("mouseup", function(e) {
                     dc.off("mousemove.dragmove");
                     me.css("z-index", zidx);
-                });
+                })
+                if (closeSelector) {
+                    me.on('click', closeSelector, function(e) {
+                        e.stopPropagation();
+                        me.hide();
+                    })
+                }
             }
         }
         return Drag;
@@ -61,7 +74,6 @@
             var me = $(this),
                 opts = options,
                 inst = me.data("DragData");
-            me.css('cursor', 'move');
             if(!inst) {
                 if ($.type(opts) !== "object") {
                     opts = {};
