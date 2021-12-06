@@ -1,9 +1,9 @@
 /**
  * jquery.doDrag.js
- * https://github.com/bbjavascript/jquery.doDrag.js
+ * https://github.com/bbjsor/jquery.doDrag.js
  * 
  * Released under the MIT license
- * https://github.com/bbjavascript/jquery.doDrag.js/blob/main/LICENSE
+ * https://github.com/bbjsor/jquery.doDrag.js/blob/main/LICENSE
  * 
  * lastUpdate: '2021-12-05T13:48:09.978Z'
  */
