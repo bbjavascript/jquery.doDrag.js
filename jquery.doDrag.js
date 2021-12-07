@@ -9,16 +9,17 @@
  */
 (function($) {
     var Drag = (function() {
-        function Drag(ele, options) {
+        function Drag(doc, ele, options) {
             this.settings = {};
             this.settings = $.extend(true, this.settings, options);
+            this.doc = doc;
             this.ele = ele;
             this.init();
         }
         Drag.prototype = {
             init: function() {
-                var dc = $(document),
-                    me = $(this.ele),
+                var dc = this.doc,
+                    me = this.ele,
                     tW = dc.outerWidth(),
                     tH = dc.outerHeight(),
                     oW = me.outerWidth(),
@@ -70,6 +71,7 @@
         return Drag;
     })()
     $.fn.doDrag = function(options) {
+        var doc = $(document);
         return this.each(function() {
             var me = $(this),
                 opts = options,
@@ -78,7 +80,7 @@
                 if ($.type(opts) !== "object") {
                     opts = {};
                 }
-                inst = new Drag(me, opts);
+                inst = new Drag(doc, me, opts);
                 me.data("DragData", inst);
             } else {
                 if ($.type(opts) === "object") {
